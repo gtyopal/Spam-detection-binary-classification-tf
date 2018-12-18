@@ -1,0 +1,20 @@
+name: 'Spam Detection - Tensorflow CNN'
+setup_command: 'bash setup.sh'
+command: 'python create_model.py'
+# non - GPU settings
+#resources:
+#  cluster: simcloud-mr2.apple.com
+#  image: 'ubuntu16.04-v1'
+#  num_cpus: 8
+#  memory_gb: 12
+
+# GPU - Settings
+environment: tf1.10-cuda9-cudnn7-py27_mr2
+resources:
+  cluster: simcloud-mr2.apple.com
+  num_gpus: 4
+  memory_gb: 12
+  image: current-ubuntu16.04-cuda9.0
+environment_variables:
+  CUDA_HOME: '/usr/local/cuda'
+  LD_LIBRARY_PATH: '$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64'
